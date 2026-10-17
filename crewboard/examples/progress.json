@@ -1,0 +1,124 @@
+{
+ "rev": 1,
+ "updated": "2026-10-16T09:30",
+ "focus": {"task": "flaky-checkout", "page": "decide"},
+ "items": [
+  {
+   "id": "dark-mode",
+   "title": "Ship dark mode for the settings page",
+   "status": "doing",
+   "area": "Web",
+   "added": "2026-10-14",
+   "due": null,
+   "done": null,
+   "what": "Settings is the last page still hardcoded to light colors.",
+   "notes": [
+    {"date": "2026-10-14", "text": "Theme tokens already exist in theme.css; settings never adopted them."},
+    {"date": "2026-10-15", "text": "Agent found 23 hardcoded colors across 6 files. Replacing them with tokens."},
+    {"date": "2026-10-16", "text": "Contrast audit running on the new palette."}
+   ],
+   "items": [
+    {"id": "dm-1", "title": "Replace hardcoded colors with tokens", "status": "done", "done": "2026-10-15"},
+    {"id": "dm-2", "title": "Contrast check on both themes", "status": "doing"},
+    {"id": "dm-3", "title": "Screenshot desktop and phone", "status": "open"}
+   ],
+   "pages": [
+    {
+     "id": "palette",
+     "kind": "raw",
+     "title": "Palette",
+     "created": "2026-10-15",
+     "html": "<p>The settings page now reads every color from the shared tokens.</p><h4>Changed</h4><ul><li><code>settings.css</code>: 14 colors to tokens</li><li><code>toggle.css</code>: 5 colors to tokens</li><li><code>form.css</code>: 4 colors to tokens</li></ul><h4>Left alone</h4><ul><li>Brand logo colors (fixed by design)</li></ul>"
+    }
+   ]
+  },
+  {
+   "id": "flaky-checkout",
+   "title": "Fix the flaky checkout test",
+   "status": "waiting",
+   "area": "Backend",
+   "added": "2026-10-15",
+   "due": null,
+   "done": null,
+   "notes": [
+    {"date": "2026-10-15", "text": "Fails about 1 run in 12 on CI, never locally."},
+    {"date": "2026-10-16", "text": "Cause: the test reads the clock twice across a minute boundary. Two fixes possible."}
+   ],
+   "items": [
+    {"id": "fc-1", "title": "Reproduce with a frozen clock", "status": "done", "done": "2026-10-16"},
+    {"id": "fc-2", "title": "Pick a fix", "status": "waiting"}
+   ],
+   "pages": [
+    {
+     "id": "decide",
+     "kind": "ask",
+     "title": "Decide",
+     "status": "open",
+     "created": "2026-10-16",
+     "choices": ["Yes", "No", "Not sure"],
+     "comments": [],
+     "items": [
+      {"id": "freeze", "line": "Freeze the clock in the checkout fixture?", "sub": "One-line change; every checkout test gets the same time."},
+      {"id": "inject", "line": "Pass the clock into CheckoutService instead?", "sub": "Bigger change, but no test can hit this again."},
+      {"id": "quarantine", "line": "Quarantine the test until the fix lands?"}
+     ]
+    }
+   ]
+  },
+  {
+   "id": "py313",
+   "title": "Upgrade the API to Python 3.13",
+   "status": "open",
+   "area": "Backend",
+   "added": "2026-10-12",
+   "due": null,
+   "done": null,
+   "notes": [
+    {"date": "2026-10-12", "text": "Two dependencies pin older versions; both have releases that support 3.13."}
+   ]
+  },
+  {
+   "id": "release-notes",
+   "title": "Write the v0.2 release notes",
+   "status": "open",
+   "area": "Docs",
+   "added": "2026-10-16",
+   "due": null,
+   "done": null
+  },
+  {
+   "id": "onboarding-copy",
+   "title": "Tighten the onboarding copy",
+   "status": "open",
+   "area": "Web",
+   "added": "2026-10-13",
+   "due": null,
+   "done": null
+  },
+  {
+   "id": "release-01",
+   "title": "Cut the 0.1.0 release",
+   "status": "done",
+   "area": "Docs",
+   "added": "2026-10-10",
+   "due": null,
+   "done": "2026-10-13"
+  },
+  {
+   "id": "error-codes",
+   "title": "API error codes",
+   "ref": true,
+   "shelf": "Reference",
+   "added": "2026-10-11",
+   "what": "Every error the public API returns, with what the client should do.",
+   "pages": [
+    {
+     "id": "codes",
+     "kind": "raw",
+     "title": "Codes",
+     "html": "<ul><li><code>E_AUTH</code>: token missing or expired. Sign in again.</li><li><code>E_RATE</code>: too many requests. Retry after the Retry-After header.</li><li><code>E_CART</code>: cart changed during checkout. Reload the cart.</li></ul>"
+    }
+   ]
+  }
+ ]
+}

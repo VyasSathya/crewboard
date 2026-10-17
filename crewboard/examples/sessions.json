@@ -1,0 +1,59 @@
+{
+ "_comment": "Example feed for --demo. Times are seconds before now; the server shifts them to the current time.",
+ "items": [
+  {
+   "id": "c:demo-dark", "src": "claude", "kind": "session", "title": "Dark mode for settings", "project": "acme-web",
+   "state": "working", "live": true, "last": 8, "started": 5400, "ended": 0, "model": "claude-opus-5-5",
+   "now": {"text": "Editing settings.css", "ts": 8},
+   "you": {"text": "Move the settings page onto the theme tokens and check contrast in both themes.", "ts": 5400},
+   "reply": {"text": "All 23 hardcoded colors now use tokens. Running a contrast audit on both themes before the screenshots.", "ts": 120},
+   "todos": [
+    {"t": "Find hardcoded colors", "s": "completed"},
+    {"t": "Replace them with tokens", "s": "completed"},
+    {"t": "Contrast audit", "s": "in_progress"},
+    {"t": "Screenshots at desktop and phone width", "s": "pending"}
+   ],
+   "files": [{"p": "~/code/acme-web/src/styles/settings.css", "ts": 8}, {"p": "~/code/acme-web/src/styles/toggle.css", "ts": 900}, {"p": "~/code/acme-web/src/styles/form.css", "ts": 1300}],
+   "activity": [{"ts": 8, "text": "Editing settings.css"}, {"ts": 60, "text": "Started agent: Audit color contrast"}, {"ts": 400, "text": "Running the style tests"}, {"ts": 900, "text": "Editing toggle.css"}, {"ts": 1300, "text": "Editing form.css"}]
+  },
+  {
+   "id": "a:demo-contrast", "parent": "c:demo-dark", "src": "claude", "kind": "agent", "title": "Audit color contrast", "project": "acme-web",
+   "state": "working", "last": 15, "started": 60, "ended": 0, "model": "claude-opus-5-5",
+   "now": {"text": "Reading theme.css", "ts": 15},
+   "task": {"text": "Check every text and background pair on the settings page against WCAG AA in light and dark.", "ts": 60},
+   "activity": [{"ts": 15, "text": "Reading theme.css"}, {"ts": 40, "text": "Searching for \"--fg\""}]
+  },
+  {
+   "id": "a:demo-find", "parent": "c:demo-dark", "src": "claude", "kind": "agent", "title": "Find hardcoded colors", "project": "acme-web",
+   "state": "done", "last": 1500, "started": 2000, "ended": 1500, "model": "claude-opus-5-5",
+   "task": {"text": "List every hex or rgb color literal under src/styles that is not a token.", "ts": 2000},
+   "reply": {"text": "23 literals in 6 files. Brand logo colors are intentional and left out.", "ts": 1500}
+  },
+  {
+   "id": "c:demo-flaky", "src": "claude", "kind": "session", "title": "Flaky checkout test", "project": "acme-api",
+   "state": "waiting", "live": true, "last": 600, "started": 7200, "ended": 600, "model": "claude-opus-5-5",
+   "you": {"text": "The checkout test fails on CI about once a day. Find out why.", "ts": 7200},
+   "reply": {"text": "Found it: the test reads the clock twice and fails when a minute rolls over between reads. Two fixes are on the hub under Decide.", "ts": 600},
+   "todos": [{"t": "Reproduce the failure", "s": "completed"}, {"t": "Find the cause", "s": "completed"}, {"t": "Pick a fix", "s": "pending"}],
+   "activity": [{"ts": 600, "text": "Updating the task list"}, {"ts": 900, "text": "Running the checkout tests 200 times"}, {"ts": 2400, "text": "Reading test_checkout.py"}]
+  },
+  {
+   "id": "c:demo-notes", "src": "claude", "kind": "session", "title": "Release notes draft", "project": "acme-web",
+   "state": "idle", "last": 6500, "started": 9000, "ended": 6500, "model": "claude-sonnet-5-5",
+   "you": {"text": "Draft the v0.2 release notes from the merged pull requests.", "ts": 9000},
+   "reply": {"text": "Draft is in docs/release-notes/v0.2.md, grouped into features, fixes and breaking changes.", "ts": 6500}
+  },
+  {
+   "id": "x:demo-lint", "src": "codex", "kind": "session", "title": "Lint config cleanup", "project": "acme-api",
+   "state": "waiting", "last": 2400, "started": 4000, "ended": 2400,
+   "you": {"text": "Remove the lint rules we disabled last year and fix what they flag.", "ts": 4000},
+   "reply": {"text": "Re-enabled 4 rules and fixed 31 findings. Tests pass.", "ts": 2400}
+  },
+  {
+   "id": "c:demo-py", "src": "claude", "kind": "session", "title": "Python 3.13 upgrade spike", "project": "acme-api",
+   "state": "idle", "last": 19000, "started": 22000, "ended": 19000, "model": "claude-opus-5-5",
+   "you": {"text": "What breaks if the API moves to Python 3.13?", "ts": 22000},
+   "reply": {"text": "Two pinned dependencies; both have compatible releases. Nothing else fails.", "ts": 19000}
+  }
+ ]
+}

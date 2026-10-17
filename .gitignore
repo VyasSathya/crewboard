@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+# a task list kept inside the checkout stays local
+progress.json
+progress.json.*
+history/
+!crewboard/examples/progress.json

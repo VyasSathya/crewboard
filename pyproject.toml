@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crewboard"
+version = "0.1.0"
+description = "One screen for every Claude Code session and subagent, plus a task list agents and you both write."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Vyas Sathya"}]
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["claude-code", "agents", "dashboard", "subagents", "task-list"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Environment :: Web Environment",
+  "Topic :: Software Development",
+]
+
+[project.scripts]
+crewboard = "crewboard.__main__:main"
+
+[tool.setuptools]
+packages = ["crewboard"]
+
+[tool.setuptools.package-data]
+crewboard = ["web/*", "examples/*.json"]
